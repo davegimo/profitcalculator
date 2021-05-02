@@ -27,4 +27,8 @@ public class Currency {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public static Currency currency(String value) {
+        return new Currency(value);
+    }
 }
