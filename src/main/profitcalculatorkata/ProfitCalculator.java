@@ -27,14 +27,14 @@ public final class ProfitCalculator {
 
     public void add(int amount, String currency, boolean incoming) {
         int realAmount = amount;
-        Double exchangeRate = EXCHANGE_RATES.get(currency) / EXCHANGE_RATES.get(localCurrency);
+        Double exchangeRate = EXCHANGE_RATES.get(currency) / EXCHANGE_RATES.get(localCurrencyNew.value);
         if (exchangeRate != null) {
             realAmount /= exchangeRate;
         }
         if (!incoming) {
             realAmount = -realAmount;
         }
-        if (localCurrency.equals(currency)) {
+        if (localCurrencyNew.value.equals(currency)) {
             this.localAmount += realAmount;
         } else {
             this.foreignAmount += realAmount;
