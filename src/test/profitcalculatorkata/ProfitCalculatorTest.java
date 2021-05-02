@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public final class ProfitCalculatorTest {
-    private final ProfitCalculator gbpCalculator = new ProfitCalculator("GBP");
-    private final ProfitCalculator eurCalculator = new ProfitCalculator("EUR");
+    private final ProfitCalculator gbpCalculator = new ProfitCalculator(new Currency("GBP"));
+    private final ProfitCalculator eurCalculator = new ProfitCalculator(new Currency("EUR"));
 
     @Test
     public void

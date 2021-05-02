@@ -15,10 +15,9 @@ public final class ProfitCalculator {
     private int localAmount = 0;
     private int foreignAmount = 0;
 
-    public ProfitCalculator(String localCurrency) {
-        Currency localCurrencyNew = new Currency(localCurrency);
-        this.localCurrency = localCurrencyNew.value;
-        Double exchangeRate = EXCHANGE_RATES.get(localCurrencyNew.value);
+    public ProfitCalculator(Currency localCurrency) {
+        this.localCurrency = localCurrency.value;
+        Double exchangeRate = EXCHANGE_RATES.get(localCurrency.value);
         if (exchangeRate == null) {
             throw new IllegalArgumentException("Invalid currency.");
         }
