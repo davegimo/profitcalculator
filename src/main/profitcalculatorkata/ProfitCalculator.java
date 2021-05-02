@@ -12,10 +12,12 @@ public final class ProfitCalculator {
             .build();
 
     private final String localCurrency;
+    private final Currency localCurrencyNew;
     private int localAmount = 0;
     private int foreignAmount = 0;
 
     public ProfitCalculator(Currency localCurrency) {
+        this.localCurrencyNew = localCurrency;
         this.localCurrency = localCurrency.value;
         Double exchangeRate = EXCHANGE_RATES.get(localCurrency.value);
         if (exchangeRate == null) {
