@@ -32,7 +32,7 @@ public final class ProfitCalculator {
         if (!incoming) {
             realAmount = -realAmount;
         }
-        if (localCurrency.value.equals(currency.value)) {
+        if (localCurrency.equals(currency)) {
             this.localAmount += realAmount;
         } else {
             this.foreignAmount += realAmount;
