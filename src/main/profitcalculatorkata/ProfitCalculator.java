@@ -23,7 +23,7 @@ public final class ProfitCalculator {
 
     public ProfitCalculator(Currency localCurrency) {
         this.localCurrency = localCurrency;
-        Double exchangeRate = EXCHANGE_RATES.get(localCurrency.value);
+        Double exchangeRate = EXCHANGE_RATES_NEW.get(localCurrency);
         if (exchangeRate == null) {
             throw new IllegalArgumentException("Invalid currency.");
         }
@@ -31,7 +31,7 @@ public final class ProfitCalculator {
 
     public void add(int amount, Currency currency, boolean incoming) {
         int realAmount = amount;
-        Double exchangeRate = EXCHANGE_RATES.get(currency.value) / EXCHANGE_RATES.get(localCurrency.value);
+        Double exchangeRate = EXCHANGE_RATES_NEW.get(currency) / EXCHANGE_RATES_NEW.get(localCurrency);
         if (exchangeRate != null) {
             realAmount /= exchangeRate;
         }
