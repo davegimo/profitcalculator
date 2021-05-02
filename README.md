@@ -24,3 +24,5 @@
 **Source**
 
 Source code adapted from https://github.com/pvcarrera/crafted_design_exercises/tree/master/primitive-obsession
+
+**Test list**

@@ -16,6 +16,7 @@ public final class ProfitCalculator {
     private int foreignAmount = 0;
 
     public ProfitCalculator(String localCurrency) {
+        Currency localCurrencyNew = new Currency(localCurrency);
         this.localCurrency = localCurrency;
         Double exchangeRate = EXCHANGE_RATES.get(localCurrency);
         if (exchangeRate == null) {
