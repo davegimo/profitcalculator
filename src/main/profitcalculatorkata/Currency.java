@@ -4,6 +4,10 @@ import java.text.MessageFormat;
 import java.util.Objects;
 
 public class Currency {
+    public static final Currency EUR = currency("EUR");
+    public static final Currency USD = currency("USD");
+    public static final Currency GBP = currency("GBP");
+
     private final String value;
 
     public Currency(String value) {
