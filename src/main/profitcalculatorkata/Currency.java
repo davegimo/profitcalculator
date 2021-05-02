@@ -4,7 +4,7 @@ import java.text.MessageFormat;
 import java.util.Objects;
 
 public class Currency {
-    public final String value;
+    private final String value;
 
     public Currency(String value) {
         this.value = value;

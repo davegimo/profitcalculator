@@ -5,13 +5,7 @@ import com.google.common.collect.ImmutableMap;
 import java.util.Map;
 
 public final class ProfitCalculator {
-    private static final Map<String, Double> EXCHANGE_RATES = ImmutableMap.<String, Double>builder()
-            .put("GBP", 1.0)
-            .put("USD", 1.6)
-            .put("EUR", 1.2)
-            .build();
-
-    private static final Map<Currency, Double> EXCHANGE_RATES_NEW = ImmutableMap.<Currency, Double>builder()
+    private static final Map<Currency, Double> EXCHANGE_RATES = ImmutableMap.<Currency, Double>builder()
             .put(new Currency("GBP"), 1.0)
             .put(new Currency("USD"), 1.6)
             .put(new Currency("EUR"), 1.2)
@@ -23,7 +17,7 @@ public final class ProfitCalculator {
 
     public ProfitCalculator(Currency localCurrency) {
         this.localCurrency = localCurrency;
-        Double exchangeRate = EXCHANGE_RATES_NEW.get(localCurrency);
+        Double exchangeRate = EXCHANGE_RATES.get(localCurrency);
         if (exchangeRate == null) {
             throw new IllegalArgumentException("Invalid currency.");
         }
@@ -31,7 +25,7 @@ public final class ProfitCalculator {
 
     public void add(int amount, Currency currency, boolean incoming) {
         int realAmount = amount;
-        Double exchangeRate = EXCHANGE_RATES_NEW.get(currency) / EXCHANGE_RATES_NEW.get(localCurrency);
+        Double exchangeRate = EXCHANGE_RATES.get(currency) / EXCHANGE_RATES.get(localCurrency);
         if (exchangeRate != null) {
             realAmount /= exchangeRate;
         }
