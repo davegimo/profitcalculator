@@ -27,3 +27,5 @@ Source code adapted from https://github.com/pvcarrera/crafted_design_exercises/t
 
 **Test list**
 - [ ] simplify `new Currency` in tests
+- [ ] check value parameter in Currency ctor is not null
+ 
