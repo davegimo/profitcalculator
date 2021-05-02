@@ -26,6 +26,6 @@
 Source code adapted from https://github.com/pvcarrera/crafted_design_exercises/tree/master/primitive-obsession
 
 **Test list**
-- [ ] simplify `new Currency` in tests
+- [X] simplify `new Currency` in tests
 - [ ] check value parameter in Currency ctor is not null
  
