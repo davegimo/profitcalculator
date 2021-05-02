@@ -11,6 +11,12 @@ public final class ProfitCalculator {
             .put("EUR", 1.2)
             .build();
 
+    private static final Map<Currency, Double> EXCHANGE_RATES_NEW = ImmutableMap.<Currency, Double>builder()
+            .put(new Currency("GBP"), 1.0)
+            .put(new Currency("USD"), 1.6)
+            .put(new Currency("EUR"), 1.2)
+            .build();
+
     private final Currency localCurrency;
     private int localAmount = 0;
     private int foreignAmount = 0;
