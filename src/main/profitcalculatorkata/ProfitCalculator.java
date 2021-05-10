@@ -2,14 +2,15 @@ package profitcalculatorkata;
 
 import com.google.common.collect.ImmutableMap;
 
-import java.util.Map;
-
 public final class ProfitCalculator {
-    private static final Map<Currency, Double> EXCHANGE_RATES = ImmutableMap.<Currency, Double>builder()
+
+
+
+    private static final ExchangeRates EXCHANGE_RATES = new ExchangeRates(ImmutableMap.<Currency, Double>builder()
             .put(new Currency("GBP"), 1.0)
-            .put(new Currency("USD"), 1.6)
+            .put(new Currency("USD"),1.6)
             .put(new Currency("EUR"), 1.2)
-            .build();
+            .build());
 
     private final Currency localCurrency;
     private int localAmount = 0;
@@ -17,18 +18,13 @@ public final class ProfitCalculator {
 
     public ProfitCalculator(Currency localCurrency) {
         this.localCurrency = localCurrency;
-        Double exchangeRate = EXCHANGE_RATES.get(localCurrency);
-        if (exchangeRate == null) {
-            throw new IllegalArgumentException("Invalid currency.");
-        }
+        EXCHANGE_RATES.isValidCurrency(localCurrency);
     }
 
     public void add(int amount, Currency currency, boolean incoming) {
         int realAmount = amount;
-        Double exchangeRate = EXCHANGE_RATES.get(currency) / EXCHANGE_RATES.get(localCurrency);
-        if (exchangeRate != null) {
-            realAmount /= exchangeRate;
-        }
+        Double exchangeRate = EXCHANGE_RATES.ratio(currency,localCurrency);
+        realAmount /= exchangeRate;
         if (!incoming) {
             realAmount = -realAmount;
         }

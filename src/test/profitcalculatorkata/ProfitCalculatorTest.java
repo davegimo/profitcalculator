@@ -84,4 +84,6 @@ public final class ProfitCalculatorTest {
         assertThat(profit).isEqualTo(491);
         assertThat(tax).isEqualTo(40);
     }
+
+
 }
