@@ -13,8 +13,12 @@ public class Money {
         this.value = value;
     }
 
-    public Money addValue(Money money) {
+    public Money sum(Money money) {
         return new Money(this.value + money.value,this.currency);
+    }
+
+    public Money subtract(Money money) {
+        return new Money(this.value - money.value,this.currency);
     }
 
     public Money getOpposite() {

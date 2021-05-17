@@ -12,7 +12,7 @@ public class MoneyTest {
         Money m1 = new Money(2);
         Money m2 = new Money(2);
 
-        m1 = m1.addValue(m2);
+        m1 = m1.sum(m2);
 
         assertThat(m1.value).isEqualTo(4);
     }

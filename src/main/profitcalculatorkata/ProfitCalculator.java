@@ -27,14 +27,18 @@ public final class ProfitCalculator {
             realMoney = realMoney.getOpposite();
         }
         if (amountInLocalCurrency.isSameCurrency(money)) {
-            this.amountInLocalCurrency = this.amountInLocalCurrency.addValue(realMoney);
+            this.amountInLocalCurrency = this.amountInLocalCurrency.sum(realMoney);
         } else {
-            this.amountInForeignCurrencies = this.amountInForeignCurrencies.addValue(realMoney);
+            this.amountInForeignCurrencies = this.amountInForeignCurrencies.sum(realMoney);
         }
     }
 
+//    public int calculateProfit() {
+//        return this.amountInLocalCurrency.value - calculateTax() + this.amountInForeignCurrencies.value;
+//    }
+
     public int calculateProfit() {
-        return this.amountInLocalCurrency.value - calculateTax() + this.amountInForeignCurrencies.value;
+        return this.amountInLocalCurrency.subtract(new Money(calculateTax(), this.amountInLocalCurrency.currency)).sum(new Money(this.amountInForeignCurrencies.value,this.amountInLocalCurrency.currency)).value;
     }
 
     public int calculateTax() {
