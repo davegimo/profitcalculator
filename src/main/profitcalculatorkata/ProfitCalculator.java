@@ -20,6 +20,20 @@ public final class ProfitCalculator {
         this.amountInForeignCurrencies = new Money(0,localCurrency);
     }
 
+//    public void add(Money money, boolean incoming) {
+//        Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
+//        Money realMoney = money.divideBy(exchangeRate);
+//        if (!incoming) {
+//            realMoney = realMoney.getOpposite();
+//        }
+//        if (amountInLocalCurrency.isSameCurrency(money)) {
+//            this.amountInLocalCurrency = this.amountInLocalCurrency.sum(realMoney);
+//        } else {
+//            this.amountInForeignCurrencies = this.amountInForeignCurrencies.sum(realMoney);
+//        }
+//    }
+
+
     public void add(Money money, boolean incoming) {
         Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
         Money realMoney = money.divideBy(exchangeRate);
@@ -34,13 +48,14 @@ public final class ProfitCalculator {
     }
 
     public int calculateProfit() {
-        return this.amountInLocalCurrency.subtract(new Money(calculateTax(), this.amountInLocalCurrency.currency)).sum(new Money(this.amountInForeignCurrencies.value,this.amountInLocalCurrency.currency)).value;
+        return this.amountInLocalCurrency.subtract(calculateTax()).sum(amountInForeignCurrencies).value;
     }
 
-    public int calculateTax() {
+
+    public Money calculateTax() {
         if (this.amountInLocalCurrency.isNegative()) {
-            return 0;
+            return new Money(0, this.amountInLocalCurrency.currency);
         }
-        return (this.amountInLocalCurrency.multiply(0.2).value);
+        return (this.amountInLocalCurrency.multiply(0.2));
     }
 }

@@ -15,7 +15,7 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(500, GBP), true);
 
         int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax();
+        int tax = gbpCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(400);
         assertThat(tax).isEqualTo(100);
@@ -27,7 +27,7 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(200, GBP), true);
 
         int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax();
+        int tax = gbpCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(256);
         assertThat(tax).isEqualTo(64);
@@ -39,7 +39,7 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(200, USD), true);
 
         int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax();
+        int tax = gbpCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(221);
         assertThat(tax).isEqualTo(24);
@@ -52,7 +52,7 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(360, EUR), false);
 
         int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax();
+        int tax = gbpCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(150);
         assertThat(tax).isEqualTo(100);
@@ -66,7 +66,7 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(20, GBP), false);
 
         int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax();
+        int tax = gbpCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(-120);
         assertThat(tax).isEqualTo(0);
@@ -79,7 +79,7 @@ public final class ProfitCalculatorTest {
         eurCalculator.add(new Money(200, EUR), true);
 
         int profit = eurCalculator.calculateProfit();
-        int tax = eurCalculator.calculateTax();
+        int tax = eurCalculator.calculateTax().value;
 
         assertThat(profit).isEqualTo(491);
         assertThat(tax).isEqualTo(40);
