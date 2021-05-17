@@ -33,19 +33,14 @@ public final class ProfitCalculator {
         }
     }
 
-//    public int calculateProfit() {
-//        return this.amountInLocalCurrency.value - calculateTax() + this.amountInForeignCurrencies.value;
-//    }
-
     public int calculateProfit() {
         return this.amountInLocalCurrency.subtract(new Money(calculateTax(), this.amountInLocalCurrency.currency)).sum(new Money(this.amountInForeignCurrencies.value,this.amountInLocalCurrency.currency)).value;
     }
 
     public int calculateTax() {
-        if (this.amountInLocalCurrency.value < 0) {
+        if (this.amountInLocalCurrency.isNegative()) {
             return 0;
         }
-
-        return (int) (this.amountInLocalCurrency.value * 0.2);
+        return (this.amountInLocalCurrency.multiply(0.2).value);
     }
 }

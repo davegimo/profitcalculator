@@ -13,6 +13,10 @@ public class Money {
         this.value = value;
     }
 
+    public boolean isNegative() {
+        return this.value < 0;
+    }
+
     public Money sum(Money money) {
         return new Money(this.value + money.value,this.currency);
     }
@@ -27,6 +31,10 @@ public class Money {
 
     public Money divideBy(Double divisor) {
         return new Money((int) (this.value/divisor), this.currency);
+    }
+
+    public Money multiply(Double value) {
+        return new Money((int) (this.value*value), this.currency);
     }
 
     public boolean isSameCurrency(Money money) {
