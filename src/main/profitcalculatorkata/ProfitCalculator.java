@@ -20,20 +20,6 @@ public final class ProfitCalculator {
         this.amountInForeignCurrencies = new Money(0,localCurrency);
     }
 
-//    public void add(Money money, boolean incoming) {
-//        Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
-//        Money realMoney = money.divideBy(exchangeRate);
-//        if (!incoming) {
-//            realMoney = realMoney.getOpposite();
-//        }
-//        if (amountInLocalCurrency.isSameCurrency(money)) {
-//            this.amountInLocalCurrency = this.amountInLocalCurrency.sum(realMoney);
-//        } else {
-//            this.amountInForeignCurrencies = this.amountInForeignCurrencies.sum(realMoney);
-//        }
-//    }
-
-
     public void add(Money money, boolean incoming) {
         Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
         Money realMoney = money.divideBy(exchangeRate);
@@ -41,6 +27,17 @@ public final class ProfitCalculator {
             realMoney = realMoney.getOpposite();
         }
         if (amountInLocalCurrency.isSameCurrency(money)) {
+            this.amountInLocalCurrency = this.amountInLocalCurrency.sum(realMoney);
+        } else {
+            this.amountInForeignCurrencies = this.amountInForeignCurrencies.sum(realMoney);
+        }
+    }
+
+
+    public void addNew(Item item) {
+        Double exchangeRate = EXCHANGE_RATES.ratio(item.amount().currency,amountInLocalCurrency.currency);
+        Money realMoney = item.amount().divideBy(exchangeRate);
+        if (amountInLocalCurrency.isSameCurrency(item.amount())) {
             this.amountInLocalCurrency = this.amountInLocalCurrency.sum(realMoney);
         } else {
             this.amountInForeignCurrencies = this.amountInForeignCurrencies.sum(realMoney);
