@@ -47,8 +47,8 @@ public final class ProfitCalculator {
         }
     }
 
-    public int calculateProfit() {
-        return this.amountInLocalCurrency.subtract(calculateTax()).sum(amountInForeignCurrencies).value;
+    public Money calculateProfit() {
+        return this.amountInLocalCurrency.subtract(calculateTax()).sum(amountInForeignCurrencies);
     }
 
 

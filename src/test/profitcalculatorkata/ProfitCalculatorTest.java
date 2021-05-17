@@ -14,11 +14,11 @@ public final class ProfitCalculatorTest {
     calculates_the_tax_at_20_percent() {
         gbpCalculator.add(new Money(500, GBP), true);
 
-        int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax().value;
+        Money profit = gbpCalculator.calculateProfit();
+        Money tax = gbpCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(400);
-        assertThat(tax).isEqualTo(100);
+        assertThat(profit).isEqualTo(new Money(400, GBP));
+        assertThat(tax).isEqualTo(new Money(100, GBP));
     }
 
     @Test public void
@@ -26,11 +26,11 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(120, GBP), true);
         gbpCalculator.add(new Money(200, GBP), true);
 
-        int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax().value;
+        Money profit = gbpCalculator.calculateProfit();
+        Money tax = gbpCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(256);
-        assertThat(tax).isEqualTo(64);
+        assertThat(profit).isEqualTo(new Money(256, GBP));
+        assertThat(tax).isEqualTo(new Money(64, GBP));
     }
 
     @Test public void
@@ -38,11 +38,11 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(120, GBP), true);
         gbpCalculator.add(new Money(200, USD), true);
 
-        int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax().value;
+        Money profit = gbpCalculator.calculateProfit();
+        Money tax = gbpCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(221);
-        assertThat(tax).isEqualTo(24);
+        assertThat(profit).isEqualTo(new Money(221, GBP));
+        assertThat(tax).isEqualTo(new Money(24, GBP));
     }
 
     @Test public void
@@ -51,11 +51,11 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(80, USD), true);
         gbpCalculator.add(new Money(360, EUR), false);
 
-        int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax().value;
+        Money profit = gbpCalculator.calculateProfit();
+        Money tax = gbpCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(150);
-        assertThat(tax).isEqualTo(100);
+        assertThat(profit).isEqualTo(new Money(150, GBP));
+        assertThat(tax).isEqualTo(new Money(100, GBP));
     }
 
     @Test public void
@@ -65,11 +65,11 @@ public final class ProfitCalculatorTest {
         gbpCalculator.add(new Money(400, GBP), false);
         gbpCalculator.add(new Money(20, GBP), false);
 
-        int profit = gbpCalculator.calculateProfit();
-        int tax = gbpCalculator.calculateTax().value;
+        Money profit = gbpCalculator.calculateProfit();
+        Money tax = gbpCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(-120);
-        assertThat(tax).isEqualTo(0);
+        assertThat(profit).isEqualTo(new Money(-120, GBP));
+        assertThat(tax).isEqualTo(new Money(0, GBP));
     }
 
     @Test public void
@@ -78,11 +78,11 @@ public final class ProfitCalculatorTest {
         eurCalculator.add(new Money(200, USD), false);
         eurCalculator.add(new Money(200, EUR), true);
 
-        int profit = eurCalculator.calculateProfit();
-        int tax = eurCalculator.calculateTax().value;
+        Money profit = eurCalculator.calculateProfit();
+        Money tax = eurCalculator.calculateTax();
 
-        assertThat(profit).isEqualTo(491);
-        assertThat(tax).isEqualTo(40);
+        assertThat(profit).isEqualTo(new Money(491, EUR));
+        assertThat(tax).isEqualTo(new Money(40, EUR));
     }
 
 
