@@ -13,7 +13,6 @@ public class Money {
         this.value = value;
     }
 
-
     public Money addValue(Money money) {
         return new Money(this.value + money.value,this.currency);
     }
@@ -22,8 +21,8 @@ public class Money {
         return new Money(-this.value,this.currency);
     }
 
-    public Money getRealMoney(Double exchangeRate) {
-        return new Money((int) (this.value/exchangeRate), this.currency);
+    public Money divideBy(Double divisor) {
+        return new Money((int) (this.value/divisor), this.currency);
     }
 
     public boolean isSameCurrency(Money money) {
