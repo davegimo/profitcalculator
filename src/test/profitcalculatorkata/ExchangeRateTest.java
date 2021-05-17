@@ -12,10 +12,12 @@ public class ExchangeRateTest {
     void ratio() {
         Currency gbp = new Currency("GBP");
         Currency usd = new Currency("USD");
+
         ExchangeRates EXCHANGE_RATES = new ExchangeRates(ImmutableMap.<Currency, Double>builder()
                 .put(gbp, 1.0)
                 .put(usd,2.0)
                 .build());
+
         assertThat(EXCHANGE_RATES.ratio(usd,gbp)).isEqualTo(2.0);
     }
 
@@ -26,6 +28,7 @@ public class ExchangeRateTest {
         ExchangeRates EXCHANGE_RATES = new ExchangeRates(ImmutableMap.<Currency, Double>builder()
                 .put(gbp, 1.0)
                 .build());
+
         assertThrows(Exception.class,
                 ()->{ EXCHANGE_RATES.ratio(gbp,invalidCurrency);}
         );

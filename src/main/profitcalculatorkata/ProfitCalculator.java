@@ -12,38 +12,38 @@ public final class ProfitCalculator {
             .put(new Currency("EUR"), 1.2)
             .build());
 
-    private final Currency localCurrency;
-    private int localAmount = 0;
-    private int foreignAmount = 0;
+
+    private Money amountInLocalCurrency;
+    private Money amountInForeignCurrencies;
 
     public ProfitCalculator(Currency localCurrency) {
-        this.localCurrency = localCurrency;
         EXCHANGE_RATES.isValidCurrency(localCurrency);
+        this.amountInLocalCurrency = new Money(0,localCurrency);
+        this.amountInForeignCurrencies = new Money(0,localCurrency);
     }
 
-    public void add(int amount, Currency currency, boolean incoming) {
-        int realAmount = amount;
-        Double exchangeRate = EXCHANGE_RATES.ratio(currency,localCurrency);
-        realAmount /= exchangeRate;
+    public void add(Money money, boolean incoming) {
+        Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
+        Money realMoney = money.getRealMoney(exchangeRate);
         if (!incoming) {
-            realAmount = -realAmount;
+            realMoney = realMoney.getOpposite();
         }
-        if (localCurrency.equals(currency)) {
-            this.localAmount += realAmount;
+        if (amountInLocalCurrency.isSameCurrency(money)) {
+            this.amountInLocalCurrency = this.amountInLocalCurrency.addValue(realMoney);
         } else {
-            this.foreignAmount += realAmount;
+            this.amountInForeignCurrencies = this.amountInForeignCurrencies.addValue(realMoney);
         }
     }
 
     public int calculateProfit() {
-        return localAmount - calculateTax() + foreignAmount;
+        return this.amountInLocalCurrency.value - calculateTax() + this.amountInForeignCurrencies.value;
     }
 
     public int calculateTax() {
-        if (localAmount < 0) {
+        if (this.amountInLocalCurrency.value < 0) {
             return 0;
         }
 
-        return (int) (localAmount * 0.2);
+        return (int) (this.amountInLocalCurrency.value * 0.2);
     }
 }
