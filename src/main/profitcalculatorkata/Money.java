@@ -3,15 +3,11 @@ package profitcalculatorkata;
 import java.util.Objects;
 
 public class Money {
-    public int value;
+    private int value;
     public Currency currency;
 
     public Money(int value, Currency currency) {
         this.currency = currency;
-        this.value = value;
-    }
-
-    public Money(int value) {
         this.value = value;
     }
 
