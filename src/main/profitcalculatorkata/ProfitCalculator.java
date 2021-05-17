@@ -4,8 +4,6 @@ import com.google.common.collect.ImmutableMap;
 
 public final class ProfitCalculator {
 
-
-
     private static final ExchangeRates EXCHANGE_RATES = new ExchangeRates(ImmutableMap.<Currency, Double>builder()
             .put(new Currency("GBP"), 1.0)
             .put(new Currency("USD"),1.6)
@@ -24,7 +22,7 @@ public final class ProfitCalculator {
 
     public void add(Money money, boolean incoming) {
         Double exchangeRate = EXCHANGE_RATES.ratio(money.currency,amountInLocalCurrency.currency);
-        Money realMoney = money.getRealMoney(exchangeRate);
+        Money realMoney = money.divideBy(exchangeRate);
         if (!incoming) {
             realMoney = realMoney.getOpposite();
         }
